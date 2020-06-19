@@ -20,4 +20,4 @@ LABEL io.k8s.display-name="app name" \
 
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://*:8080
-ENTRYPOINT ["dotnet", "policy-inquiry.dll"]
+ENTRYPOINT ["dotnet", "policy-Inquiry-api.dll"]
