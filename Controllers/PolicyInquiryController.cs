@@ -22,13 +22,13 @@ namespace policy_Inquiry_api.Controllers
 		[HttpGet]
 		public IEnumerable<string> Get()
 		{
-			return new string[] { "Hello", "Hello 2" };
+			return new string[] { "Pinged successfull" };
 		}
 
 		[HttpOptions()]
 		[HttpGet]
 		[Route("GetDetails/{policyNumber}")]
-		public ActionResult<PolicyInquiry> Get(string policyNumber)
+		public ActionResult Get(string policyNumber)
 		{
 			var policyInquiry = _policyInquiryService.Get(policyNumber);
 			
@@ -37,7 +37,7 @@ namespace policy_Inquiry_api.Controllers
 				return new JsonResult("Record not found for " + policyNumber);
 			}
 
-			return policyInquiry;
+			return Ok(policyInquiry);
 		}
 	}
 }
