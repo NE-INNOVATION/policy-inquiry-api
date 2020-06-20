@@ -34,7 +34,7 @@ namespace policy_Inquiry_api.Controllers
 			
 			if (policyInquiry == null)
 			{
-				return NotFound();
+				return new JsonResult("Record not found for " + policyNumber);
 			}
 
 			return policyInquiry;
