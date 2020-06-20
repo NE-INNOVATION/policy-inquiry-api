@@ -12,10 +12,10 @@ namespace policy_Inquiry_api
 
         public PolicyInquiryService(IIrquiDatabaseSettings settings)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            var client = new MongoClient(System.Environment.GetEnvironmentVariable("ConnectionString"));
+            var database = client.GetDatabase(System.Environment.GetEnvironmentVariable("DatabaseName"));
 
-            _policyInquiry = database.GetCollection<PolicyInquiry>(settings.PolicyInquiryCollectionName);
+            _policyInquiry = database.GetCollection<PolicyInquiry>(System.Environment.GetEnvironmentVariable("PolicyInquiryCollectionName"));
         }
 
         public List<PolicyInquiry> Get() =>
