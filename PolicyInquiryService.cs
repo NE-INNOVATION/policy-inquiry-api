@@ -35,7 +35,7 @@ namespace policy_Inquiry_api
 
             var builders = Builders<BsonDocument>.Filter.Eq("policyNumber", policyNumber);
             var result = collection.Find(builders).FirstOrDefault();
-
+            _logger.LogInformation("Response : " + result?.ToJson());
             RemoveIdObject(result);
             return result?.ToJson();
     
@@ -43,6 +43,7 @@ namespace policy_Inquiry_api
 
         private static void RemoveIdObject(BsonDocument response)
         {
+            if (response == null) return;
             BsonElement bsonElement;
             if (response.TryGetElement("_id", out bsonElement))
                 response.RemoveElement(bsonElement);
