@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace policy_Inquiry_api.Controllers
 {
 	[ApiController]
-	[Route("api/[controller]")]
+	[Route("api/policy/[controller]")]
 	[EnableCors("*")]
 	public class PolicyInquiryController : ControllerBase
 	{	
