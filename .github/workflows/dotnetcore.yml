@@ -39,7 +39,7 @@ jobs:
       run:  |
          echo ${{ steps.extract_branch.outputs.branch }}
          echo ${{ steps.extract_branch.outputs.sha_short }}
-         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
+         docker login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
          docker build . -t quay.io/neinnovationorg/policy-inquiry-api:${{ steps.extract_branch.outputs.branch }}
