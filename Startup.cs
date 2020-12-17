@@ -66,7 +66,7 @@ namespace policy_Inquiry_api
 
 			app.UseRouting();
 
-			app.UseAuthorization();
+			//app.UseAuthorization();
 
 			app.UseCors("MyPolicy");
 

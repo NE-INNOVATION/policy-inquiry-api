@@ -39,20 +39,20 @@ jobs:
       run:  |
          echo ${{ steps.extract_branch.outputs.branch }}
          echo ${{ steps.extract_branch.outputs.sha_short }}
-         podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
+         docker login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
-         podman build . -t quay.io/neinnovationorg/policy-inquiry-api:${{ steps.extract_branch.outputs.branch }}
+         docker build . -t quay.io/neinnovationorg/policy-inquiry-api:${{ steps.extract_branch.outputs.branch }}
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/neinnovationorg/policy-inquiry-api:${{ steps.extract_branch.outputs.branch }}
+          docker push quay.io/neinnovationorg/policy-inquiry-api:${{ steps.extract_branch.outputs.branch }}
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
         # The URL of the Openshift cluster
-        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER_URL }}
+        openshift_server_url: ${{ secrets.OPENSHIFT_AZURE_URL  }}
         # JSON with values to connect to the Openshift cluster
-        parameters: '{"username": "${{ secrets.OPENSHIFT_USER }}", "acceptUntrustedCerts": "true", "password":"${{ secrets.OPENSHIFT_PASSWORD }}"}'
+        parameters: '{"username": "${{ secrets.OPENSHIFT_AZURE_USER  }}", "acceptUntrustedCerts": "true", "password":"${{ secrets.OPENSHIFT_AZURE_PASSWORD  }}"}'
           
         cmd: |
           'version'
