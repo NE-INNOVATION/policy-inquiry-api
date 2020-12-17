@@ -8,87 +8,111 @@ namespace policy_Inquiry_api
     [BsonIgnoreExtraElements]
     public class PolicyInquiry
 	{        
-        [BsonElement("PolicyNumber")]
+        [BsonElement("policyNumber")]
         public string PolicyNumber { get; set; }
 
-        [BsonElement("Drivers")]
+        [BsonElement("drivers")]
         public List<Driver> Drivers { get; set; }
 
-        [BsonElement("Vehicles")]
+        [BsonElement("vehicles")]
         public List<Vehicle> Vehicles { get; set; }
 
-        [BsonElement("Coverges")]
+        [BsonElement("coverages")]
         public Coverages Coverages { get; set; }
 
-        [BsonElement("Customer")]
+        [BsonElement("customer")]
         public Customer Customer { get; set; }
     }
 
     public class Coverages
     {
-        [BsonElement("Bi")]
+        [BsonElement("bi")]
         public bool Bi { get; set; }
 
-        [BsonElement("Pd")]
+        [BsonElement("pd")]
         public bool Pd { get; set; }
-        [BsonElement("Med")]
+        [BsonElement("med")]
         public bool Med { get; set; }
 
-        [BsonElement("Comp")]
+        [BsonElement("comp")]
         public bool Comp { get; set; }
-        [BsonElement("Col")]
+        [BsonElement("col")]
         public bool Col { get; set; }
-        [BsonElement("Premium")]
+        [BsonElement("premium")]
         public string Premium { get; set; }
     }
 
     public class Customer
     {
-        [BsonElement("FirstName")]
+        [BsonElement("firstName")]
         public string FirstName { get; set; }
-        [BsonElement("LastName")]
+        [BsonElement("lastName")]
         public string LastName { get; set; }
-        [BsonElement("Dob")]
+        [BsonElement("dob")]
         public string Dob { get; set; }
-        [BsonElement("StreetAddress")]
+        [BsonElement("stAddress")]
         public string StreetAddress { get; set; }
-        [BsonElement("Apt")]
+        [BsonElement("apt")]
         public string Apt { get; set; }
-        [BsonElement("Zip")]
+        [BsonElement("zip")]
         public string Zip { get; set; }
+    }
+
+    public class InquiryRequest
+    {
+        public string firstName { get; set; }
+        public string lastName { get; set; }
     }
 
     public class Driver
     {
-        [BsonElement("Name")]
+        [BsonElement("name")]
         public string Name { get; set; }
-        [BsonElement("Gender")]
+        [BsonElement("gender")]
         public string Gender { get; set; }
-        [BsonElement("Dob")]
-        public string Dob { get; set; }
-        [BsonElement("MaritalStatus")]
+
+        [BsonElement("maritalStatus")]
         public string MaritalStatus { get; set; }
-        [BsonElement("LicensedAge")]
-        public string LicensedAge { get; set; }
+        [BsonElement("licenseNum")]
+        public string LicensedNum { get; set; }
+
+
+        [BsonElement("employmentStatus")]
+        public string EmploymentStatus { get; set; }
+        [BsonElement("currentIns")]
+        public string CurrentIns { get; set; }
+        [BsonElement("education")]
+        public string Education { get; set; }
+        [BsonElement("id")]
+        public string Id { get; set; }
     }
 
     public class Vehicle
     {
-        [BsonElement("Year")]
+        [BsonElement("year")]
         public string Year { get; set; }
-        [BsonElement("Make")]
-        public string Make { get; set; }
-        [BsonElement("Model")]
-        public string Model { get; set; }
-        [BsonElement("VehicleOwned")]
+        [BsonElement("make")]
+        public Int32 Make { get; set; }
+        [BsonElement("model")]
+        public Int32 Model { get; set; }
+        [BsonElement("vehicleOwned")]
         public string VehicleOwned { get; set; }
-        [BsonElement("VehicleUsage")]
+        [BsonElement("vehicleUsage")]
         public string VehicleUsage { get; set; }
-        [BsonElement("VehiclePrimaryUse")]
+        [BsonElement("vehiclePrimaryUse")]
 
         public string VehiclePrimaryUse { get; set; }
-        [BsonElement("AnnualMileage")]
+        [BsonElement("annualMileage")]
         public string AnnualMileage { get; set; }
+
+        [BsonElement("daysDriven")]
+
+        public string DaysDriven { get; set; }
+        [BsonElement("milesDriven")]
+        public string MilesDriven { get; set; }
+
+        [BsonElement("id")]
+        public string Id { get; set; }
     }
    
 }

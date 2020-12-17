@@ -7,7 +7,7 @@ namespace policy_Inquiry_api.Controllers
 {
 	[ApiController]
 	[Route("api/policy/[controller]")]
-	[EnableCors("*")]
+	[EnableCors("MyPolicy")]
 	public class PolicyInquiryController : ControllerBase
 	{	
 		private readonly ILogger<PolicyInquiryController> _logger;
@@ -35,6 +35,30 @@ namespace policy_Inquiry_api.Controllers
 			if (policyInquiry == null)
 			{
 				return new JsonResult("Record not found for " + policyNumber);
+			}
+
+			return Ok(policyInquiry);
+		}
+
+		[HttpOptions()]
+		[HttpPost]
+		[Route("GetDetailsWithName")]
+		public ActionResult GetDetailswithName([FromBody] InquiryRequest inquiry)
+		{
+			string policyInquiry = "";
+
+			if (!string.IsNullOrEmpty(inquiry.firstName))
+            {
+			   policyInquiry = _policyInquiryService.GetAllWithName("firstName", inquiry.firstName);
+			}
+            else
+            {
+				policyInquiry = _policyInquiryService.GetAllWithName("lastName", inquiry.lastName);
+			}
+				
+			if (string.IsNullOrEmpty(policyInquiry))
+			{
+				return NotFound();
 			}
 
 			return Ok(policyInquiry);

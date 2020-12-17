@@ -23,7 +23,11 @@
         "launchUrl": "policyinquiry",
         "applicationUrl": "https://localhost:5001;http://localhost:5000",
         "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "ConnectionString": "mongodb://lrqi_db:lrqi_db_pwd@lrqidb-shard-00-00-wksjy.mongodb.net:27017,lrqidb-shard-00-01-wksjy.mongodb.net:27017,lrqidb-shard-00-02-wksjy.mongodb.net:27017/test?ssl=true&replicaSet=LRQIDB-shard-0&authSource=admin&retryWrites=true",
+            "DatabaseName": "lrqi",
+            "PolicyInquiryCollectionName": "policy-inquiry"
+
         }
     }
   }

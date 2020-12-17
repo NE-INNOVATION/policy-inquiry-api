@@ -33,17 +33,12 @@ namespace policy_Inquiry_api
 			services.AddSingleton<IIrquiDatabaseSettings>(sp =>
 				sp.GetRequiredService<IOptions<IrquiDatabaseSettings>>().Value);
 
-			services.AddCors(options =>
+			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 			{
-				options.AddPolicy("Test",
-					builder =>
-					{
-						builder.WithOrigins("*")
-						       .AllowAnyHeader()
-							   .AllowAnyOrigin()
-							   .WithMethods("PUT", "DELETE", "GET", "OPTIONS");
-					});
-			});
+				builder.AllowAnyOrigin()
+					   .AllowAnyMethod()
+					   .AllowAnyHeader();
+			}));
 
 			// Register the Swagger generator, defining 1 or more Swagger documents
 			//services.AddSwaggerGen(c =>
@@ -73,7 +68,7 @@ namespace policy_Inquiry_api
 
 			app.UseAuthorization();
 
-			app.UseCors("AllowAll");
+			app.UseCors("MyPolicy");
 
 			app.UseEndpoints(endpoints =>
 			{

@@ -41,6 +41,18 @@ namespace policy_Inquiry_api
     
         }
 
+        private string GetDataWithName(string collectionName, string key,string value)
+        {
+            var collection = _database.GetCollection<BsonDocument>(collectionName);
+
+            var builders = Builders<BsonDocument>.Filter.Eq("customer." + key , value);
+            var result = collection.Find(builders).ToList();
+            _logger.LogInformation("Response : " + result?.ToJson());
+            RemoveIdObject(result);
+            return result?.ToJson();
+
+        }
+
         private static void RemoveIdObject(BsonDocument response)
         {
             if (response == null) return;
@@ -49,11 +61,25 @@ namespace policy_Inquiry_api
                 response.RemoveElement(bsonElement);
         }
 
+        private static void RemoveIdObject(List<BsonDocument> response)
+        {
+            if (response == null) return;
+            foreach (var item in response)
+            {
+                RemoveIdObject(item);
+            }
+        }
+
         public List<PolicyInquiry> Get() =>
           _policyInquiry.Find(policyInquiry => true).ToList();
 
         public string Get(string policyNumber) =>
            GetData(System.Environment.GetEnvironmentVariable("PolicyInquiryCollectionName"), policyNumber);
+
+        public string GetAllWithName(string key, string value)
+        {
+           return GetDataWithName(System.Environment.GetEnvironmentVariable("PolicyInquiryCollectionName"), key,value);
+        }
 
         public PolicyInquiry Create(PolicyInquiry policyInquiry)
         {
