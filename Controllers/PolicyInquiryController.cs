@@ -40,10 +40,8 @@ namespace policy_Inquiry_api.Controllers
 			return Ok(policyInquiry);
 		}
 
-		[HttpOptions()]
 		[HttpPost]
-		[Route("GetDetailsWithName")]
-		public ActionResult GetDetailswithName([FromBody] InquiryRequest inquiry)
+		public ActionResult Post(InquiryRequest inquiry)
 		{
 			string policyInquiry = "";
 
